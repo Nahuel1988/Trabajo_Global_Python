@@ -1,3 +1,4 @@
+# Integrantes del trabajo: Fausto Chirino, Nahuel Morales, Neyen Bianchi
 # Trabajo_Global_Python
 Explicación:
 
@@ -17,4 +18,3 @@ cant_letras=4: Cantidad de letras iguales consecutivas necesarias para definir u
 
 Con un if si variable consulta es = 1, se llama al método detectar_mutantes() de detector_obj para verificar si el ADN tiene una mutación. El resultado sera una impresion que diga ¿Es mutante? y un dato booleano sea False o True segun lo que lo que el metodo detectar_mutantes haya detectado
 
-**Integrantes del trabajo: Fausto Chirino, Nahuel Morales, Neyen Bianchi**

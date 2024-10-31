@@ -5,7 +5,7 @@ while True:  # Bucle que se reinicia en caso de error
     for i in range(1, 7):
         fila = input(f"Ingrese la fila número {i} de su ADN (escribir de corrido y sin espacios, solo con A, T, C, G): ").upper()
         # Verificamos que solo contenga letras válidas
-        if all(nucleotido in "ATCG" for nucleotido in fila) and len(fila) == 6:
+        if all(adn in "ATCG" for adn in fila) and len(fila) == 6:
             ADN.append(list(fila))
         else:
             print("Error: La secuencia ingresada contiene caracteres no válidos. Empezando desde cero.")

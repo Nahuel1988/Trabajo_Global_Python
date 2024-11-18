@@ -47,9 +47,5 @@ Después de realizar la mutación, se mostrará el ADN modificado.
 **4 - Salir del programa:** Finaliza la ejecución del programa.
 
 ## 3. Realizar una nueva operación o salir
-Después de cada operación, se te preguntará si deseas realizar otra operación. Si eliges sí (respondiendo "s"), el programa te permitirá realizar otra operación. Si eliges no (respondiendo "n"), el programa se cerrará.detector_obj** se crea para instanciar el objeto Detector en el cual se le pasan dos argumentos:
-ADN: La matriz de ADN.
-cant_letras=4: Cantidad de letras iguales consecutivas necesarias para definir una mutación.
-
-Con un if si variable consulta es = 1, se llama al método detectar_mutantes() de detector_obj para verificar si el ADN tiene una mutación. El resultado sera una impresion que diga ¿Es mutante? y un dato booleano sea True o False segun lo que el metodo detectar_mutantes haya detectado
-
+Después de cada operación, se te preguntará si deseas realizar otra operación. Si eliges sí (respondiendo "s"), el programa te permitirá realizar otra operación. Si eliges no (respondiendo "n"), el programa se cerrará.
+Y al cerrarce el programa imprimira el ADN final junto con un saludo final

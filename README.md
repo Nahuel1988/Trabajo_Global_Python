@@ -1,4 +1,4 @@
-# Integrantes del trabajo: Fausto Chirino, Nahuel Morales, Neyen Bianchi
+# Integrantes del trabajo: Fausto Chirino, Nahuel Morales, Neyen Bianchi , Leo Gomez
 # Trabajo_Global_Python
 Explicación:
 

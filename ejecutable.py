@@ -97,7 +97,7 @@ while True:
 if ADN:
     print("\nADN Final:")
     for fila in ADN:
-        print(''.join(fila))
+        print('  '.join(fila))
     print("\nGracias por utilizar el programa. ¡Esperamos que vuelva pronto!")
 else:
     print("\nNo se ingresó un ADN válido al final del programa.")

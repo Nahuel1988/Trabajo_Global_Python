@@ -7,10 +7,15 @@
 Al iniciar el programa, se te pedirá que ingreses una secuencia de ADN de 6 filas, cada una con 6 caracteres. Los caracteres deben ser A, T, C, o G, y no debe haber espacios entre ellos. Ejemplo de una secuencia válida:
 
 ATCGAT
+
 GCTGGC
+
 ATCGGA
+
 CGTATC
+
 TGCATG
+
 ATGCGT
 
 Pasos:

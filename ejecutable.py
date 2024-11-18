@@ -94,3 +94,10 @@ while True:
     if continuar == 'n':
         print("Saliendo del programa...")
         break  # Sale del bucle de operaciones y termina el programa
+if ADN:
+    print("\nADN Final:")
+    for fila in ADN:
+        print(''.join(fila))
+    print("\nGracias por utilizar el programa. ¡Esperamos que vuelva pronto!")
+else:
+    print("\nNo se ingresó un ADN válido al final del programa.")

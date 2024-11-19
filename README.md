@@ -28,9 +28,13 @@ Una vez que las 6 filas de ADN sean ingresadas correctamente, el programa las mo
 Una vez ingresado el ADN, el programa te ofrece un menú de opciones para operar sobre la secuencia de ADN:
 
 1-Detectar mutaciones
+
 2-Mutar el ADN
+
 3-Sanar el ADN
+
 4-Salir del programa
+
 Debes ingresar el número correspondiente a la operación que deseas realizar:
 
 **1 - Detectar mutaciones:** Esta opción verifica si el ADN es un "mutante". El resultado será un mensaje que te indica si el ADN es mutante o no devolvien un **True** si es un mutante y un **False** si no lo es.

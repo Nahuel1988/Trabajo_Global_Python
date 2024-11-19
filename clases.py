@@ -1,3 +1,4 @@
+import random
 # Clase Detector: Detecta patrones de mutación en una matriz de ADN
 class Detector:
     def __init__(self, ADN, cant_letras=4):
@@ -53,150 +54,120 @@ class Detector:
                 contador = 1  # Reinicia el contador si las letras son diferentes
         return False
 
-# Clase Mutador: Representa un mutador con una base nitrogenada y un tipo de mutación
 class Mutador:
     def __init__(self, tipo_mutacion):
         self.tipo_mutacion = tipo_mutacion
 
 class Radiacion(Mutador):
-    def __init__(self, base_nitrogenada, tipo_mutacion):
+    def __init__(self, base_nitrogenada, tipo_mutacion="horizontal"):
         super().__init__(tipo_mutacion)
-        self.base_nitrogenada = base_nitrogenada
+        self.base_nitrogenada = base_nitrogenada  # Gestiona la base nitrogenada en esta clase
 
     def crear_mutante(self, adn, posicion_inicial, orientacion):
+        
         try:
             fila, columna = posicion_inicial
-            fila -= 1  # Ajustamos índices a base 0
-            columna -= 1
-            if orientacion == "H":
-                for i in range(4):
-                    adn[fila][columna + i] = self.base_nitrogenada
-            elif orientacion == "V":
-                for i in range(4):
-                    adn[fila + i][columna] = self.base_nitrogenada
-            else:
-                raise ValueError("Orientación inválida. Use 'H' o 'V'.")
-            return adn
-        except IndexError:
-            print("Error: La mutación excede los límites de la matriz.")
-        except Exception as e:
-            print(f"Error inesperado: {e}")
-class Virus(Mutador):
-    def __init__(self, base_nitrogenada, tipo_mutacion="diagonal"):
-        super().__init__(tipo_mutacion)
-        self.base_nitrogenada = base_nitrogenada
-        self.longitud_mutacion = 4  # Longitud de la mutación en bases nitrogenadas
+            fila -= 1  # Ajusta índice a base 0
+            columna -= 1  # Ajusta índice a base 0
 
-    def crear_mutante(self, adn, posicion_inicial, direccion="D"):
-        try:
-            fila, columna = posicion_inicial
-            fila -= 1  # Ajustar índice a base 0
-            columna -= 1
-
-            # Validar que la mutación no exceda los límites de la matriz
-            if direccion == "D":
-                if fila + self.longitud_mutacion > len(adn) or columna + self.longitud_mutacion > len(adn[0]):
-                    raise IndexError("La mutación excede los límites de la matriz en diagonal descendente.")
-                for i in range(self.longitud_mutacion):
-                    adn[fila + i][columna + i] = self.base_nitrogenada
-            elif direccion == "A":
-                if fila - self.longitud_mutacion < -1 or columna + self.longitud_mutacion > len(adn[0]):
-                    raise IndexError("La mutación excede los límites de la matriz en diagonal ascendente.")
-                for i in range(self.longitud_mutacion):
-                    adn[fila - i][columna + i] = self.base_nitrogenada
+            if orientacion == "H":  # Horizontal
+                for i in range(len(adn[0])):
+                    adn[fila][i] = self.base_nitrogenada
+            elif orientacion == "V":  # Vertical
+                for i in range(len(adn)):
+                    adn[i][columna] = self.base_nitrogenada
             else:
-                raise ValueError("Dirección inválida. Use 'D' para descendente o 'A' para ascendente.")
-            
+                raise ValueError("Orientación inválida. Use 'H' para horizontal o 'V' para vertical.")
             return adn
         except IndexError as e:
             print(f"Error: {e}")
         except Exception as e:
             print(f"Error inesperado: {e}")
 
+
+class Virus(Mutador):
+    def __init__(self, base_nitrogenada, tipo_mutacion="diagonal"):
+        super().__init__(tipo_mutacion)
+        self.base_nitrogenada = base_nitrogenada
+        self.longitud_mutacion = 4  # Longitud de la mutación en bases nitrogenadas
+
+    def crear_mutante(self, adn, posicion_inicial, direccion):
+        
+        try:
+            fila, columna = posicion_inicial
+            fila -= 1  # Ajusta índice a base 0
+            columna -= 1  # Ajusta índice a base 0
+
+            if direccion == "D":  # Diagonal descendente
+                for i in range(self.longitud_mutacion):
+                    if fila + i < len(adn) and columna + i < len(adn[0]):  # Valida los límites
+                        adn[fila + i][columna + i] = self.base_nitrogenada
+                    else:
+                        raise IndexError("La mutación diagonal descendente excede los límites de la matriz.")
+            elif direccion == "A":  # Diagonal ascendente
+                for i in range(self.longitud_mutacion):
+                    if fila - i >= 0 and columna + i < len(adn[0]):  # Valida los límites
+                        adn[fila - i][columna + i] = self.base_nitrogenada
+                    else:
+                        raise IndexError("La mutación diagonal ascendente excede los límites de la matriz.")
+            else:
+                raise ValueError("Dirección inválida. Use 'D' para descendente o 'A' para ascendente.")
+            return adn
+        except IndexError as e:
+            print(f"Error: {e}")
+        except Exception as e:
+            print(f"Error inesperado: {e}")
+
+import random
+
 class Sanador:
-    def __init__(self, cant_letras=4):
-        self.cant_letras = cant_letras  # Cantidad de letras iguales para considerarse mutación
+    def __init__(self, nombre, nivel_sanacion):
+        self.nombre = nombre
+        self.nivel_sanacion = nivel_sanacion
 
-    def sanar_mutantes(self, adn):
-        detector = Detector(adn, self.cant_letras)
-        if detector.detectar_mutantes():
-            print("Se detectaron mutaciones. Corrigiéndolas...")
-            # Busca y corrige todas las mutaciones
-            for i in range(len(adn)):
-                for j in range(len(adn[i])):
-                    if self.es_parte_de_mutacion(adn, i, j):
-                        adn[i][j] = self.obtener_nueva_base(adn, i, j)
+    def sanar_mutantes(self, adn, detectar_mutante):
+        if detectar_mutante(adn):
+            print("Se detectectaron mutaciones. Generando nuevo ADN sano...")
+            nuevo_adn = self.generar_adn_sano(len(adn), len(adn[0]), detectar_mutante)
+            return nuevo_adn
         else:
-            print("El ADN original no tenía mutaciones.")
-        return adn
+            print("No se detectaron mutaciones s. El ADN está sano.")
+            return adn
 
-    def es_parte_de_mutacion(self, adn, fila, columna):
-        """
-        Verifica si una posición específica es parte de una mutación
-        (horizontal, vertical o diagonal).
-        """
-        return (
-            self.detectar_mutacion_horizontal(adn, fila, columna) or
-            self.detectar_mutacion_vertical(adn, fila, columna) or
-            self.detectar_mutacion_diagonal(adn, fila, columna)
-        )
+    def generar_adn_sano(self, filas, columnas, detectar_mutante):
+        bases = ['A', 'T', 'C', 'G']
+        while True:  # Repetir hasta generar un ADN válido
+            adn_sano = []
 
-    def detectar_mutacion_horizontal(self, adn, fila, columna):
-        """
-        Detecta si hay una mutación horizontal a partir de la posición dada.
-        """
-        try:
-            # Verifica si las próximas `cant_letras` bases son iguales
-            secuencia = [adn[fila][columna + k] for k in range(self.cant_letras)]
-            return len(set(secuencia)) == 1  # Todas las bases son iguales
-        except IndexError:
-            return False
+            for i in range(filas):
+                fila = []
+                for j in range(columnas):
+                    base = random.choice(bases)
 
-    def detectar_mutacion_vertical(self, adn, fila, columna):
-        """
-        Detecta si hay una mutación vertical a partir de la posición dada.
-        """
-        try:
-            secuencia = [adn[fila + k][columna] for k in range(self.cant_letras)]
-            return len(set(secuencia)) == 1  # Todas las bases son iguales
-        except IndexError:
-            return False
+                    # Asegurar que no haya mutaciones horizontales
+                    while j > 0 and base == fila[j - 1]:
+                        base = random.choice(bases)
 
-    def detectar_mutacion_diagonal(self, adn, fila, columna):
-        """
-        Detecta si hay una mutación diagonal (principal o inversa) a partir de la posición dada.
-        """
-        try:
-            # Diagonal principal
-            secuencia_principal = [adn[fila + k][columna + k] for k in range(self.cant_letras)]
-            if len(set(secuencia_principal)) == 1:
-                return True
-        except IndexError:
-            pass
+                    # Asegurar que no haya mutaciones verticales
+                    if i > 0 and base == adn_sano[i - 1][j]:
+                        while base == adn_sano[i - 1][j]:
+                            base = random.choice(bases)
 
-        try:
-            # Diagonal inversa
-            secuencia_inversa = [adn[fila + k][columna - k] for k in range(self.cant_letras)]
-            if len(set(secuencia_inversa)) == 1:
-                return True
-        except IndexError:
-            pass
+                    # Asegurar que no haya mutaciones diagonales (principal)
+                    if i > 0 and j > 0 and base == adn_sano[i - 1][j - 1]:
+                        while base == adn_sano[i - 1][j - 1]:
+                            base = random.choice(bases)
 
-        return False
+                    # Asegurar que no haya mutaciones diagonales (secundaria)
+                    if i > 0 and j < columnas - 1 and base == adn_sano[i - 1][j + 1]:
+                        while base == adn_sano[i - 1][j + 1]:
+                            base = random.choice(bases)
 
-    def obtener_nueva_base(self, adn, fila, columna):
-        """
-        Genera una nueva base nitrogenada válida que no cree una nueva mutación.
-        """
-        bases_posibles = {"A", "T", "C", "G"}
-        bases_vecinas = set()
+                    fila.append(base)
+                adn_sano.append(fila)
 
-        # Recoge las bases vecinas para evitar repeticiones
-        for i in range(max(0, fila - 1), min(len(adn), fila + 2)):
-            for j in range(max(0, columna - 1), min(len(adn[i]), columna + 2)):
-                if (i, j) != (fila, columna):
-                    bases_vecinas.add(adn[i][j])
+            # Verificar que el ADN generado sea válido
+            if not detectar_mutante(adn_sano):
+                return adn_sano
 
-        # Selecciona una base válida que no sea igual a las vecinas
-        base_nueva = (bases_posibles - bases_vecinas).pop()
-        return base_nueva
+

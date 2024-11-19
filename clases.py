@@ -118,8 +118,6 @@ class Virus(Mutador):
         except Exception as e:
             print(f"Error inesperado: {e}")
 
-import random
-
 class Sanador:
     def __init__(self, nombre, nivel_sanacion):
         self.nombre = nombre

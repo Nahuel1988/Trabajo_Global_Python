@@ -33,19 +33,18 @@ Una vez ingresado el ADN, el programa te ofrece un menú de opciones para operar
 4-Salir del programa
 Debes ingresar el número correspondiente a la operación que deseas realizar:
 
-**1 - Detectar mutaciones:** Esta opción verifica si el ADN es un "mutante" (según algún criterio definido en la clase Detector). El resultado será un mensaje que te indica si el ADN es mutante o no.
+**1 - Detectar mutaciones:** Esta opción verifica si el ADN es un "mutante". El resultado será un mensaje que te indica si el ADN es mutante o no devolvien un **True** si es un mutante y un **False** si no lo es.
 
 **2 - Mutar el ADN: Puedes elegir entre dos tipos de mutadores:**
 
 **Radiación** (horizontal o vertical): Te pedirá que elijas una base nitrogenada (A, T, C, G), una posición inicial (fila y columna), y la orientación de la mutación (horizontal o vertical). Luego, mutará la secuencia de ADN según los parámetros ingresados.
 
-**Virus** (diagonal): De nuevo, te pedirá que elijas una base nitrogenada, una posición inicial, y la dirección de la mutación (ascendente o descendente). Se aplicará una mutación diagonal en el ADN.
+**Virus** (diagonal): De nuevo, te pedirá que elijas una base nitrogenada, una posición inicial, y la dirección de la mutación (ascendente o descendente). Se aplicará una mutación diagonal en el ADN, en caso de que la mutacion se salga de los limites te arrojara un error indicandolo.
 Después de realizar la mutación, se mostrará el ADN modificado.
 
-**3 - Sanar el ADN:** Si el ADN ha sido mutado, puedes usar esta opción para "sanarlo". El programa aplicará alguna lógica de sanación para restaurar el ADN original.
+**3 - Sanar el ADN:** Si el ADN ha sido mutado, puedes usar esta opción para "sanarlo". El programa crear un ADN totalmente nuevo de manera aleatoria.
 
-**4 - Salir del programa:** Finaliza la ejecución del programa.
+**4 - Salir del programa:** Finaliza la ejecución del programa, el programa se cerrará Y al cerrarce el programa imprimira el ADN final junto con un saludo final.
 
 ## 3. Realizar una nueva operación o salir
-Después de cada operación, se te preguntará si deseas realizar otra operación. Si eliges sí (respondiendo "s"), el programa te permitirá realizar otra operación. Si eliges no (respondiendo "n"), el programa se cerrará.
-Y al cerrarce el programa imprimira el ADN final junto con un saludo final
+Después de cada operación, se te preguntará si deseas realizar otra operación. Si eliges sí (respondiendo "s"), el programa te permitirá realizar otra operación. Si eliges no (respondiendo "n"), el programa se cerrará Y al cerrarce el programa imprimira el ADN final junto con un saludo final

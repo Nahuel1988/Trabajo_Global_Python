@@ -46,7 +46,7 @@ Debes ingresar el número correspondiente a la operación que deseas realizar:
 **Virus** (diagonal): De nuevo, te pedirá que elijas una base nitrogenada, una posición inicial, y la dirección de la mutación (ascendente o descendente). Se aplicará una mutación diagonal en el ADN, en caso de que la mutacion se salga de los limites te arrojara un error indicandolo.
 Después de realizar la mutación, se mostrará el ADN modificado.
 
-**3 - Sanar el ADN:** Si el ADN ha sido mutado, puedes usar esta opción para "sanarlo". El programa crear un ADN totalmente nuevo de manera aleatoria.
+**3 - Sanar el ADN:** Si el ADN ha sido mutado, puedes usar esta opción para "sanarlo". El programa creará un ADN totalmente nuevo de manera aleatoria.
 
 **4 - Salir del programa:** Finaliza la ejecución del programa, el programa se cerrará Y al cerrarce el programa imprimira el ADN final junto con un saludo final.
 

@@ -1,7 +1,7 @@
 import random
 # Clase Detector: Detecta patrones de mutación en una matriz de ADN
 class Detector:
-    def __init__(self, ADN, cant_letras=4):
+    def _init_(self, ADN, cant_letras=4):
         # Inicializa el detector con la matriz de ADN y la cantidad mínima de letras iguales consecutivas para detectar una mutación
         self.ADN = ADN  # Lista de listas que representa la matriz de ADN.
         self.cant_letras = cant_letras  # Número mínimo de letras iguales consecutivas para detectar una mutación.
@@ -55,26 +55,26 @@ class Detector:
         return False
 
 class Mutador:
-    def __init__(self, tipo_mutacion):
+    def _init_(self, tipo_mutacion):
         self.tipo_mutacion = tipo_mutacion
 
 class Radiacion(Mutador):
-    def __init__(self, base_nitrogenada, tipo_mutacion="horizontal"):
-        super().__init__(tipo_mutacion)
-        self.base_nitrogenada = base_nitrogenada  # Gestiona la base nitrogenada en esta clase
+    def _init_(self, base_nitrogenada, cant_letras=4, tipo_mutacion="horizontal"):
+        super()._init_(tipo_mutacion)
+        self.base_nitrogenada = base_nitrogenada
+        self.cant_letras = cant_letras  # Ahora definimos el atributo cant_letras
 
     def crear_mutante(self, adn, posicion_inicial, orientacion):
-        
         try:
             fila, columna = posicion_inicial
             fila -= 1  # Ajusta índice a base 0
             columna -= 1  # Ajusta índice a base 0
 
-            if orientacion == "H":  # Horizontal
-                for i in range(len(adn[0])):
+            if orientacion.upper() == "H":  # Horizontal
+                for i in range(columna,min(columna+self.cant_letras, len(adn[0]))):
                     adn[fila][i] = self.base_nitrogenada
-            elif orientacion == "V":  # Vertical
-                for i in range(len(adn)):
+            elif orientacion.upper() == "V":  # Vertical
+                for i in range(fila,min(fila+self.cant_letras, len(adn))):
                     adn[i][columna] = self.base_nitrogenada
             else:
                 raise ValueError("Orientación inválida. Use 'H' para horizontal o 'V' para vertical.")
@@ -86,8 +86,8 @@ class Radiacion(Mutador):
 
 
 class Virus(Mutador):
-    def __init__(self, base_nitrogenada, tipo_mutacion="diagonal"):
-        super().__init__(tipo_mutacion)
+    def _init_(self, base_nitrogenada, tipo_mutacion="diagonal"):
+        super()._init_(tipo_mutacion)
         self.base_nitrogenada = base_nitrogenada
         self.longitud_mutacion = 4  # Longitud de la mutación en bases nitrogenadas
 
@@ -118,10 +118,8 @@ class Virus(Mutador):
         except Exception as e:
             print(f"Error inesperado: {e}")
 
-import random
-
 class Sanador:
-    def __init__(self, nombre, nivel_sanacion):
+    def _init_(self, nombre, nivel_sanacion):
         self.nombre = nombre
         self.nivel_sanacion = nivel_sanacion
 
@@ -168,6 +166,4 @@ class Sanador:
 
             # Verificar que el ADN generado sea válido
             if not detectar_mutante(adn_sano):
-                return adn_sano
-
-
+               return adn_sano

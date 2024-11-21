@@ -4,7 +4,9 @@
 # Explicación de como usar:
 
 ## 1. Ingresar una secuencia de ADN
-Al iniciar el programa, se te pedirá que ingreses una secuencia de ADN de 6 filas, cada una con 6 caracteres. Los caracteres deben ser A, T, C, o G, y no debe haber espacios entre ellos. Ejemplo de una secuencia válida:
+Al iniciar el programa, se te pedirá que ingres entre dos opciones que pueden ser entre 1 y 2:
+### Opcion 1:
+Ingresar manualmente el ADN. El programa te pedirá que ingreses las bases nitrogenadas del ADN en un formato específico, con una longitud de 6 bases para cada fila, asegurándote de que los caracteres sean solo A, T, C o G y sin espacios. Ejemplo de una secuencia válida:
 
 ATCGAT
 
@@ -23,6 +25,9 @@ Pasos:
 El programa te pedirá que ingreses una fila a la vez.
 Si introduces una fila incorrecta (por ejemplo, con caracteres fuera de A, T, C, G, o con una longitud incorrecta), el programa te informará de un error y te pedirá que comiences desde el principio.
 Una vez que las 6 filas de ADN sean ingresadas correctamente, el programa las mostrará y procederá al siguiente paso.
+
+### Opcion 2: 
+Usar una muestra pre-guardada de ADN. Si prefieres no ingresar el ADN manualmente, puedes elegir usar una secuencia predefinida.
 
 ## 2. Elegir una operación a realizar
 Una vez ingresado el ADN, el programa te ofrece un menú de opciones para operar sobre la secuencia de ADN:

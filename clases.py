@@ -1,7 +1,7 @@
 import random
 # Clase Detector: Detecta patrones de mutación en una matriz de ADN
 class Detector:
-    def _init_(self, ADN, cant_letras=4):
+    def __init__(self, ADN, cant_letras=4):
         # Inicializa el detector con la matriz de ADN y la cantidad mínima de letras iguales consecutivas para detectar una mutación
         self.ADN = ADN  # Lista de listas que representa la matriz de ADN.
         self.cant_letras = cant_letras  # Número mínimo de letras iguales consecutivas para detectar una mutación.
@@ -55,61 +55,74 @@ class Detector:
         return False
 
 class Mutador:
-    def _init_(self, tipo_mutacion):
+    def __init__(self, tipo_mutacion):
         self.tipo_mutacion = tipo_mutacion
 
 class Radiacion(Mutador):
-    def _init_(self, base_nitrogenada, cant_letras=4, tipo_mutacion="horizontal"):
-        super()._init_(tipo_mutacion)
+    def __init__(self, base_nitrogenada, cant_letras=4, tipo_mutacion="horizontal"):
+        super().__init__(tipo_mutacion)
         self.base_nitrogenada = base_nitrogenada
-        self.cant_letras = cant_letras  # Ahora definimos el atributo cant_letras
+        self.cant_letras = cant_letras
 
     def crear_mutante(self, adn, posicion_inicial, orientacion):
         try:
             fila, columna = posicion_inicial
-            fila -= 1  # Ajusta índice a base 0
-            columna -= 1  # Ajusta índice a base 0
 
-            if orientacion.upper() == "H":  # Horizontal
-                for i in range(columna,min(columna+self.cant_letras, len(adn[0]))):
-                    adn[fila][i] = self.base_nitrogenada
-            elif orientacion.upper() == "V":  # Vertical
-                for i in range(fila,min(fila+self.cant_letras, len(adn))):
-                    adn[i][columna] = self.base_nitrogenada
+            if orientacion.upper() == "H":  # Mutación Horizontal
+                for i in range(columna, min(columna + self.cant_letras, len(adn[0]))):
+                    adn[fila][i] = self.base_nitrogenada  # Cambiar ADN directamente
+
+            elif orientacion.upper() == "V":  # Mutación Vertical
+                for i in range(fila, min(fila + self.cant_letras, len(adn))):
+                    adn[i][columna] = self.base_nitrogenada  # Cambiar ADN directamente
+
             else:
                 raise ValueError("Orientación inválida. Use 'H' para horizontal o 'V' para vertical.")
+            
             return adn
+
         except IndexError as e:
             print(f"Error: {e}")
         except Exception as e:
             print(f"Error inesperado: {e}")
 
 
+
+
 class Virus(Mutador):
-    def _init_(self, base_nitrogenada, tipo_mutacion="diagonal"):
-        super()._init_(tipo_mutacion)
+    def __init__(self, base_nitrogenada, tipo_mutacion="diagonal"):
+        super().__init__(tipo_mutacion)
         self.base_nitrogenada = base_nitrogenada
         self.longitud_mutacion = 4  # Longitud de la mutación en bases nitrogenadas
 
     def crear_mutante(self, adn, posicion_inicial, direccion):
-        
         try:
             fila, columna = posicion_inicial
-            fila -= 1  # Ajusta índice a base 0
-            columna -= 1  # Ajusta índice a base 0
 
-            if direccion == "D":  # Diagonal descendente
+            if direccion == "D":  # Diagonal descendente hacia la derecha
                 for i in range(self.longitud_mutacion):
+                    # Verifica si la columna se excede
+                    if columna + i >= len(adn[0]):
+                        print(f"Error: La mutación diagonal descendente no puede continuar más allá de la columna {len(adn[0])}.")
+                        return None  # Detiene la mutación si la columna se sale del rango
+
                     if fila + i < len(adn) and columna + i < len(adn[0]):  # Valida los límites
                         adn[fila + i][columna + i] = self.base_nitrogenada
                     else:
                         raise IndexError("La mutación diagonal descendente excede los límites de la matriz.")
-            elif direccion == "A":  # Diagonal ascendente
+            elif direccion == "A":  # Diagonal ascendente hacia la izquierda
                 for i in range(self.longitud_mutacion):
-                    if fila - i >= 0 and columna + i < len(adn[0]):  # Valida los límites
-                        adn[fila - i][columna + i] = self.base_nitrogenada
-                    else:
-                        raise IndexError("La mutación diagonal ascendente excede los límites de la matriz.")
+                    # Verifica si la fila se sale del rango superior
+                    if fila - i < 0:
+                        print(f"Error: La mutación diagonal ascendente no puede continuar más allá de la fila 1.")
+                        return None  # Detiene la mutación si la fila se sale del rango
+                    
+                    # Verifica si la columna se excede
+                    if columna - i < 0:
+                        print(f"Error: La mutación diagonal ascendente no puede continuar más allá de la columna 1.")
+                        return None  # Detiene la mutación si la columna se sale del rango
+                    
+                    adn[fila - i][columna - i] = self.base_nitrogenada
             else:
                 raise ValueError("Dirección inválida. Use 'D' para descendente o 'A' para ascendente.")
             return adn
@@ -118,8 +131,11 @@ class Virus(Mutador):
         except Exception as e:
             print(f"Error inesperado: {e}")
 
+
+
+
 class Sanador:
-    def _init_(self, nombre, nivel_sanacion):
+    def __init__(self, nombre, nivel_sanacion):
         self.nombre = nombre
         self.nivel_sanacion = nivel_sanacion
 

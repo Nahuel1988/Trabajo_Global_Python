@@ -44,8 +44,16 @@ Debes ingresar el número correspondiente a la operación que deseas realizar:
 **Radiación** (horizontal o vertical): Te pedirá que elijas una base nitrogenada (A, T, C, G), una posición inicial (fila y columna), y la orientación de la mutación (horizontal o vertical). Luego, mutará la secuencia de ADN según los parámetros ingresados.
 Después de realizar la mutación, se mostrará el ADN modificado.
 
-**Virus** (diagonal): De nuevo, te pedirá que elijas una base nitrogenada, una posición inicial, y la dirección de la mutación (ascendente o descendente). Se aplicará una mutación diagonal en el ADN, en caso de que la mutacion se salga de los limites te arrojara un error indicandolo.
+**Virus** (diagonal): De nuevo, te pedirá que elijas una base nitrogenada, una posición inicial, y la dirección de la mutación (A de ascendente o D de descendente). Se aplicará una mutación diagonal en el ADN, en caso de que la mutacion se salga de los limites te arrojara un error indicandolo.
 Después de realizar la mutación, se mostrará el ADN modificado.
+### Mutación descendente hacia abajo y a la derecha (D):
+
+El ciclo ahora incrementa tanto la fila como la columna en cada iteración. Esto asegura que la mutación se realice hacia abajo y hacia la derecha desde la posición inicial.
+Se verifica si la columna excede los límites de la matriz, y si es así, se muestra un mensaje de error y se detiene la mutación.
+
+### Mutación ascendente hacia arriba y a la izquierda (A):
+
+La mutación sigue funcionando de la misma manera que antes, moviéndose hacia arriba y a la izquierda.
 
 **3 - Sanar el ADN:** Si el ADN ha sido mutado, puedes usar esta opción para "sanarlo". El programa creará un ADN totalmente nuevo de manera aleatoria.
 Después de realizar la sanacion, se mostrará el ADN sanado.

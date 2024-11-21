@@ -46,7 +46,13 @@ Debes ingresar el número correspondiente a la operación que deseas realizar:
 
 **2 - Mutar el ADN: Puedes elegir entre dos tipos de mutadores:**
 
-**Radiación** (horizontal o vertical): Te pedirá que elijas una base nitrogenada (A, T, C, G), una posición inicial (fila y columna), y la orientación de la mutación (horizontal o vertical). Luego, mutará la secuencia de ADN según los parámetros ingresados.
+**Radiación** (horizontal o vertical): Te pedirá que elijas una base nitrogenada (A, T, C, G), una posición inicial (fila y columna), y la orientación de la mutación 
+
+### Mutacion horizontal arranca desde su posicion indicada hacia la derecha
+
+### Mutacion vertical arranca desde su posicion indicada hacia abajo
+
+Luego, mutará la secuencia de ADN según los parámetros ingresados.
 Después de realizar la mutación, se mostrará el ADN modificado.
 
 **Virus** (diagonal): De nuevo, te pedirá que elijas una base nitrogenada, una posición inicial, y la dirección de la mutación (A de ascendente o D de descendente). Se aplicará una mutación diagonal en el ADN, en caso de que la mutacion se salga de los limites te arrojara un error indicandolo.

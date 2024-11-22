@@ -117,7 +117,7 @@ while True:
                         fila_inicial=    int(input("Ingrese la fila inicial (1-6): "))
                         columna_inicial=    int(input("Ingrese la columna inicial (1-6): "))
                         
-                        if not (0 < fila_inicial <= 7) or not (1 <= columna_inicial <= 6): 
+                        if not (0 < fila_inicial <= 6) or not (1 <= columna_inicial <= 6): 
                             raise ValueError
                              
                         else:
@@ -135,10 +135,11 @@ while True:
 
                 virus_obj = Virus(base_nitrogenada=base_nitrogenada, tipo_mutacion="diagonal")
                 adn_mutado = virus_obj.crear_mutante(ADN, posicion_inicial, direccion)
-                print("Mutando...")
-                espera()
+                
 
                 if adn_mutado:
+                    print("Mutando...")
+                    espera()
                     mostrar_ADN(adn_mutado)
 
             else:print("opcion ingresada invalida...")

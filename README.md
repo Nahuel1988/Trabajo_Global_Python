@@ -62,11 +62,11 @@ Después de realizar la mutación, se mostrará el ADN modificado.
 El ciclo ahora incrementa tanto la fila como la columna en cada iteración. Esto asegura que la mutación se realice hacia abajo y hacia la derecha desde la posición inicial.
 Se verifica si la columna excede los límites de la matriz, y si es así, se muestra un mensaje de error y se detiene la mutación.
 
-### Mutación ascendente hacia arriba y a la izquierda (A):
+### Mutación ascendente hacia arriba y a la derecha (A):
 
-La mutación sigue funcionando de la misma manera que antes, moviéndose hacia arriba y a la izquierda.
+La mutación sigue funcionando de la misma manera que antes, moviéndose hacia arriba y a la derecha.
 
-**3 - Sanar el ADN:** Si el ADN ha sido mutado, puedes usar esta opción para "sanarlo". El programa creará un ADN totalmente nuevo de manera aleatoria.
+**3 - Sanar el ADN:** Si el ADN ha sido mutado, puedes usar esta opción para "sanarlo". El programa creará un ADN totalmente nuevo de manera aleatoria, pero verficando que el nuevo ADN no posea mutaciones
 Después de realizar la sanacion, se mostrará el ADN sanado.
 
 **4 - Salir del programa:** Finaliza la ejecución del programa, el programa se cerrará Y al cerrarce el programa imprimira el ADN final junto con un saludo final.

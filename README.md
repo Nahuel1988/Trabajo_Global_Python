@@ -4,7 +4,7 @@
 # Explicación de como usar:
 
 ## 1. Ingresar una secuencia de ADN
-Al iniciar el programa, se te pedirá que ingres entre dos opciones que pueden ser entre 1 y 2:
+Al iniciar el programa, se te pedirá que ingreses entre dos opciones que pueden ser entre 1 y 2:
 ### Opcion 1:
 Ingresar manualmente el ADN. El programa te pedirá que ingreses las bases nitrogenadas del ADN en un formato específico, con una longitud de 6 bases para cada fila, asegurándote de que los caracteres sean solo A, T, C o G y sin espacios. Ejemplo de una secuencia válida:
 

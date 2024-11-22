@@ -1,5 +1,21 @@
 from clases import Detector, Radiacion, Virus, Sanador
+import time
 ADN = []
+#metodos auxiliares...
+def mostrar_ADN(adn):
+        print("\nSecuencia de ADN:")
+        for fila in ADN:
+            print("  ".join(fila))
+
+def espera():
+    for i in range(3):
+                for j in range(3):
+                    time.sleep(0.25)
+                    print(".",end="",flush=True)
+                time.sleep(0.25)
+                print(" ",end="",flush=True)
+
+
 while True:  # Bucle principal
       # Reinicia la lista de ADN
     print("\n------Bienvenido al Programa de deteccion de mutaciones------\n\n\n"
@@ -24,7 +40,7 @@ while True:  # Bucle principal
                 break
             
             elif opcion=="2":
-                ADN=["AAAATG","CGTAGT","TGAGTC","CACAGT","AGTCGT","CTGATC"]
+                ADN=[list("AAAATG"),list("CGTAGT"),list("TGAGTC"),list("CACAGT"),list("AGTCGT"),list("CTGATC")]
                 break
             else:
                     print("opcion invalida, por favor una de las siguientes opciones...\n"
@@ -32,9 +48,7 @@ while True:  # Bucle principal
                         "2-usar la muestra pre-guardada\n")
                 
    
-    print("\nSecuencia de ADN:")
-    for fila in ADN:
-        print("  ".join(fila))
+    mostrar_ADN(ADN)
         
     break  # Salir del bucle después de ingresar todo el ADN correctamente
      
@@ -48,6 +62,7 @@ while True:
         if consulta == 1:
             detector_obj = Detector(ADN=ADN, cant_letras=4)
             es_mutante = detector_obj.detectar_mutantes()
+            espera()
             print("¿Es mutante?", es_mutante)
         elif consulta == 2:
             tipo_mutador = input("Seleccione el tipo de mutador:\n1-Radiación (horizontal o vertical)\n2-Virus (diagonal):\n")
@@ -82,13 +97,12 @@ while True:
 
                 radiacion_obj = Radiacion(base_nitrogenada=base_nitrogenada, tipo_mutacion="inserción")
                 adn_mutado = radiacion_obj.crear_mutante(ADN, posicion_inicial, orientacion)
-                
+                print("Mutando...")
+                espera()
                 if adn_mutado:
-                    print("\nADN después de la mutación:")
-                    for fila in adn_mutado:
-                            print("  ".join(fila))
+                    mostrar_ADN(adn_mutado)
 
-                    #break
+                    
 
             elif tipo_mutador == "2":
                 # Virus
@@ -121,11 +135,11 @@ while True:
 
                 virus_obj = Virus(base_nitrogenada=base_nitrogenada, tipo_mutacion="diagonal")
                 adn_mutado = virus_obj.crear_mutante(ADN, posicion_inicial, direccion)
+                print("Mutando...")
+                espera()
 
                 if adn_mutado:
-                    print("\nADN después de la mutación:")
-                    for fila in adn_mutado:
-                            print("  ".join(fila))
+                    mostrar_ADN(adn_mutado)
 
             else:print("opcion ingresada invalida...")
 
@@ -135,12 +149,12 @@ while True:
             if adn_sanado:
                 ADN = adn_sanado  # Actualiza ADN con el ADN sanado
                 print("\nADN después de ser sanado:")
-                for fila in ADN:
-                    print("  ".join(fila))
+                mostrar_ADN(ADN)
 
 
         elif consulta == 4:
             print("Saliendo del programa...")
+            espera()
             break  # Sale del bucle de operaciones y termina el programa
         else:
             print("Opción no válida. Intente nuevamente.")
@@ -154,8 +168,10 @@ while True:
        
 if ADN:
     print("\nADN Final:")
+    
     for fila in ADN:
         print('  '.join(fila))
     print("\nGracias por utilizar el programa. ¡Esperamos que vuelva pronto!")
 else:
     print("\nNo se ingresó un ADN válido al final del programa.")
+

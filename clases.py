@@ -1,4 +1,4 @@
-import random
+import random, time
 # Clase Detector: Detecta patrones de mutación en una matriz de ADN
 class Detector:
     def __init__(self, ADN, cant_letras=4):
@@ -118,11 +118,11 @@ class Virus(Mutador):
                         return None  # Detiene la mutación si la fila se sale del rango
                     
                     # Verifica si la columna se excede
-                    if columna - i < 0:
+                    if columna + i >= len(adn[0]):
                         print(f"Error: La mutación diagonal ascendente no puede continuar más allá de la columna 1.")
                         return None  # Detiene la mutación si la columna se sale del rango
                     
-                    adn[fila - i][columna - i] = self.base_nitrogenada
+                    adn[fila - i][columna + i] = self.base_nitrogenada
             else:
                 raise ValueError("Dirección inválida. Use 'D' para descendente o 'A' para ascendente.")
             return adn
@@ -142,6 +142,8 @@ class Sanador:
     def sanar_mutantes(self, adn, detectar_mutante):
         if detectar_mutante(adn):
             print("Se detectectaron mutaciones. Generando nuevo ADN sano...")
+            espera()
+            
             nuevo_adn = self.generar_adn_sano(len(adn), len(adn[0]), detectar_mutante)
             return nuevo_adn
         else:
@@ -183,3 +185,10 @@ class Sanador:
             # Verificar que el ADN generado sea válido
             if not detectar_mutante(adn_sano):
                return adn_sano
+def espera():
+    for i in range(3):
+                for j in range(3):
+                    time.sleep(0.5)
+                    print(".",end="",flush=True)
+                #time.sleep(0.5)
+                print(" ",end="",flush=True)

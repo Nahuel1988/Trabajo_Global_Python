@@ -161,10 +161,15 @@ while True:
             print("Opción no válida. Intente nuevamente.")
     
     # Preguntar si desea realizar otra operación
-        continuar = input("\n¿Desea realizar otra operación? (s/n): ").lower()
+        while True:
+            continuar = input("\n¿Desea realizar otra operación? (s/n): ").lower()
+            if continuar == 'n' or continuar=='s':
+                break
+            print("Opcion invalida. Por favor ingrese S o N")
         if continuar == 'n':
             print("Saliendo del programa...")
             break  # Sale del bucle de operaciones y termina el programa
+
 
        
 if ADN:

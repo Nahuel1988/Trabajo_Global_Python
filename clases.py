@@ -57,6 +57,8 @@ class Detector:
 class Mutador:
     def __init__(self, tipo_mutacion):
         self.tipo_mutacion = tipo_mutacion
+    def crear_mutante():
+        pass
 
 class Radiacion(Mutador):
     def __init__(self, base_nitrogenada, cant_letras=4, tipo_mutacion="horizontal"):

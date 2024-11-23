@@ -28,7 +28,7 @@ while True:  # Bucle principal
             opcion=input()
             if opcion=="1":
                 ADN = []
-                print("(escribir de corrido y sin espacios, solo con A, T, C, G)")
+                print("(escribir de corrido y sin espacios 6 columnas, solo con A, T, C, G)")
                 for i in range(1, 7):
                     while True:  # Repite hasta que se ingrese una fila válida
                         fila = input(f"Ingrese la fila número {i} de su ADN : \n").upper()
